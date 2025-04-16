@@ -319,6 +319,17 @@ KBG = { ## Kingdom of Burgundy
 	capital = STATE_BURGUNDY
 }
 
+GCC = { ## Gallian Concord 
+	color = {51 0 51 }
+
+	country_type = recognized
+
+	tier = empire
+
+	cultures = { burgundian french breton occitan }
+	capital = STATE_BURGUNDY
+
+
 WES = {
 	color = { 5 85 5 }
 	

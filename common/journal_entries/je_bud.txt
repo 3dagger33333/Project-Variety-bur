@@ -32,3 +32,295 @@
 	weight = 100
 	should_be_pinned_by_default = yes
 }
+je_bud_main2 = {
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+	
+	group = je_group_internal_affairs
+
+
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+		NOT = { has_law = law_type:law_mercantilism }
+		NOT = { has_law = law_type:law_no_colonial_affairs }
+		NOT = { has_law = law_type:law_no_police }
+		YES = { technology = watertube_boiler } 
+		YES = { technology = railways }
+	}
+
+	on_complete = {
+		trigger_event = { id = fm_bud.2 }
+		show_as_tooltip = {
+			}
+		}
+	}
+
+	current_value = {
+		value = root.gdp
+	}
+
+	goal_add_value = {
+		value = root.gdp
+		multiply = 1,0
+	}
+
+	progressbar = yes
+
+	weight = 100
+}
+
+je_bud_fra_main = {
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	
+	group = je_group_historical_content
+
+	complete = {
+		scope:journal_entry = {
+			is_goal_complete = yes
+		}
+		custom_tooltip = {
+			text = has_completed_bud_fra
+			has_variable = completed_bud_fra
+		}
+		custom_tooltip = {
+			text = has_completed_bud_bri
+			has_variable = completed_bud_bri
+		}
+		custom_tooltip = {
+			text = has_completed_bud_oci
+			has_variable = completed_bud_oci
+		}
+	}
+	on_complete = {
+		trigger_event = {
+			id = bud_fra_main.1
+		}
+	}
+	current_value = {
+		value = var:bud_fra_var
+	}
+	goal_add_value = {
+		add = 3
+	}
+
+	progressbar = yes
+
+	weight = 10000
+	should_be_pinned_by_default = yes
+}
+
+
+je_bud_fra = {	
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	group = je_group_historical_content
+	immediate = {
+		s:STATE_ILE_DE_FRANCE = {
+			add_claim = ROOT 
+		}
+		s:STATE_ORLEANS = {
+			add_claim = ROOT 
+		}
+		s:STATE_MAINE_ANJOU = {
+			add_claim = ROOT 
+		}
+		s:STATE_NORMANDY = {
+			add_claim = ROOT 
+		}
+		s:STATE_POITOU = {
+			add_claim = ROOT 
+		}
+		s:STATE_PICARDY = {
+			add_claim = ROOT 
+		}
+
+		S:s
+	}
+	complete = {
+		cultural_acceptance_base = { target = cu:french value >= acceptance_status_4 }
+		owns_entire_state_region = STATE_ILE_DE_FRANCE
+		state = STATE_ILE_DE_FRANCE
+            trigger = {
+                turmoil < 0.25
+            }
+		owns_entire_state_region = STATE_ORLEANS
+		state = STATE_ORLEANS
+            trigger = {
+                turmoil < 0.25
+            }
+		owns_entire_state_region = STATE_MAINE_ANJOU
+		state = STATE_MAINE_ANJOU
+            trigger = {
+                turmoil < 0.25
+            }
+		owns_entire_state_region = STATE_NORMANDY
+		state = STATE_NORMANDY
+            trigger = {
+                turmoil < 0.25
+            }
+		owns_entire_state_region = STATE_POITOU
+		state = STATE_POITOU
+            trigger = {
+                turmoil < 0.25
+            }
+		owns_entire_state_region = STATE_PICARDY
+		state = STATE_PICARDY
+            trigger = {
+                turmoil < 0.25
+            }
+	}
+	on_complete = {
+		add_primary_culture = { french }
+		trigger_event = {
+			id = fm_bud.3
+		}
+		change_variable = {
+			name = bud_fra_var
+			add = 1
+		}
+		set_variable = completed_bud_fra
+	}
+	weight = 100
+	should_be_pinned_by_default = yes
+}
+
+je_bud_bri = {
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	group = je_group_historical_content
+	immediate = {
+		s:STATE_BRITTANY = {
+			add_claim = ROOT 
+		}
+	}
+	complete = {
+		cultural_acceptance_base = { target = cu:breton value >= acceptance_status_4 }
+		any_state = {
+			filter = {
+					state_region = s:STATE_BRITTANY
+				}
+				owner = {
+					is_subject_of = ROOT
+				}
+
+			percent = 1
+		}
+	}
+
+	on_complete = {
+
+		add_primary_culture = { breton }
+		trigger_event = {
+			id = fm_bud_fra.2
+		}
+		set_variable = completed_bud_bri
+	}
+
+	fail = {
+		cultural_acceptance_base = { target = cu:breton value >= acceptance_status_4 }
+		owns_entire_state_region = STATE_BRITTANY
+		state = STATE_BRITTANY
+            trigger = {
+                turmoil < 0.25
+            }
+
+	}
+	on_fail = {
+		add_primary_culture = { breton }
+		trigger_event = {
+			id = fm_bud_fra.2
+		}
+		set_variable = completed_bud_bri
+		change_variable = {
+			name = bud_fra_var
+			add = 1
+		}
+	}
+	weight = 100
+	should_be_pinned_by_default = yes
+}
+
+je_bud_oci = {
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	group = je_group_historical_content
+	immediate = {
+		s:STATE_AUVERGNE_LIMOUSIN = {
+			add_claim = ROOT 
+		}
+		s:STATE_GUYENNE = {
+			add_claim = ROOT 
+		}
+		s:STATE_AQUITAINE = {
+			add_claim = ROOT 
+		}
+		s:STATE_LANGUEDOC = {
+			add_claim = ROOT 
+		}
+	}
+	complete = {
+		cultural_acceptance_base = { target = cu:occitan value >= acceptance_status_4 }
+		any_state = {
+			filter = {
+					state_region = s:STATE_AUVERGNE_LIMOUSIN
+					state_region = s:STATE_GUYENNE
+					state_region = s:STATE_AQUITAINE
+					state_region = s:STATE_LANGUEDOC
+				}
+				owner = {
+					owner = ROOT
+					is_subject_of = ROOT
+				}
+
+			percent = 1
+		}
+	}
+
+	on_complete = {
+
+		add_primary_culture = { occitan }
+		trigger_event = {
+			id = fm_bud_fra.3
+		}
+		set_variable = completed_bud_oci
+		change_variable = {
+			name = bud_fra_var
+			add = 1
+	}
+
+	fail = {
+		cultural_acceptance_base = { target = cu:breton value >= acceptance_status_4 }
+		owns_entire_state_region = STATE_AUVERGNE_LIMOUSIN
+		state = STATE_AUVERGNE_LIMOUSIN
+            trigger = {
+                turmoil < 0.25
+            }
+        owns_entire_state_region = STATE_GUYENNE
+		state = STATE_GUYENNE
+            trigger = {
+                turmoil < 0.25
+            }
+        owns_entire_state_region = STATE_AQUITAINE
+		state = STATE_AQUITAINE
+            trigger = {
+                turmoil < 0.25
+            }
+        owns_entire_state_region = STATE_LANGUEDOC
+		state = STATE_LANGUEDOC
+            trigger = {
+                turmoil < 0.25
+            }
+
+	}
+	on_fail = {
+		add_primary_culture = { occitan }
+		trigger_event = {
+			id = fm_bud_fra.3
+		}
+		set_variable = completed_bud_oci
+		change_variable = {
+			name = bud_fra_var
+			add = 1
+		}
+	}
+	weight = 100
+	should_be_pinned_by_default = yes
+}

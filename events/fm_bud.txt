@@ -30,3 +30,53 @@ fm_bud.1 = {
 		}
 	}
 }
+
+
+fm_bud.2 = {
+	type = country_event
+	placement = root
+	title = fm_bud.2.t
+	desc = fm_bud.2.d
+	flavor = fm_bud.2.f
+	duration = 3
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	option = {
+		name = fm_bud.2.a
+		default_option = no
+		add_journal_entry = je_bud_fra
+		add_journal_entry = je_bud_fra_main
+		}
+	}
+	option = {
+		name= fm_bud.2.b
+		default_option = no
+		add_journal_entry = je_bud_ned
+		add_journal_entry = je_bud_ned_main
+	}
+}
+
+fm_bud.3 = {
+	type = country_event
+	placement = root
+	title = fm_bud.3.t
+	desc = fm_bud.3.d
+	flavor = fm_bud.3.f
+	duration = 3
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	option = {
+		name = fm_bud.2.a
+		default_option = no
+		add_journal_entry = je_bud_bri
+                add_journal_entry = je_bud_oci
+	}
+}

@@ -506,7 +506,9 @@ je_fla_reason: "Thanks to the diplomatic ability of the previous Flemish Dukes, 
 
 je_bud_main: "The Kingdom of Burgundy"
 je_bud_main_reason: "The Grand Duchy of [ROOT.GetCountry.GetName] has been a vassal of the Kingdom of France for centuries, but now that the strength of [ROOT.GetCountry.GetName] greatly exceeds that of the King of France, we have no reason to continue to be subjects of the Crown of France.\nIf we become independent, we will be able to raise our title from that of Grand Duchy to that of Kingdom."
-
+je_bud_main2: "Nation Rebuilding"
+je_bud_main2_reason: "Kingdom of Burgundy has suffered a lot under feudal economy in the last few hundred years, we're behind european powers in both industrial development but also late to the colonialist race. Burgundy absent from Great Colonization of America, didn't get to use the riches for their gain which other nations did obtain. We must build our industry and reform our economy."
+  
  # Corn Laws
  je_corn_laws: "Corn Laws"
  je_corn_laws_reason: "Our prohibitive import tax on grains acts as a strong protectionist policy for the interests of the landowning class and will cause an upheaval if removed."
